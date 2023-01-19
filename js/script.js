@@ -72,5 +72,40 @@ const makeGuess = function(letter){
   } else {
     guessedLetters.push(letter);
     console.log(guessedLetters);
+    guessAnswer();
+    updateWordPrg(guessedLetters);
+  }
+};
+
+const guessAnswer = function(){
+  guessLetter.innerHTML = "";
+
+  for (const letter of guessedLetters) {
+    const li = document.createElement("li");
+    li.innerText = letter;
+    guessLetter.append(li);
+  }
+};
+
+const updateWordPrg = function(guessedLetters){
+  const wordUpper = word.toUpperCase();
+  const wordArray = wordUpper.split("");
+  const wordReveal = [];
+  
+  for (const letter of wordArray) {
+    if (guessedLetters.includes(letter)) {
+      wordReveal.push(letter.toUpperCase());
+    } else {
+      wordReveal.push("●");
+    }
+  }
+  wordPrg.innerText = wordReveal.join("");
+  winGuess();
+};
+
+const winGuess = function(){
+  if (word.toUpperCase() === wordPrg.innerText) {
+    message.classList.add("win");
+    message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
   }
 };
