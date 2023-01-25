@@ -83,7 +83,7 @@ const makeGuess = function(guess){
     message.innerText = "You've already guessed that letter";
   } else {
     guessedLetters.push(guess);
-    // console.log(guessedLetters);
+    console.log(guessedLetters);
     guessCount(guess);
     guessAnswer();
     updateWordPrg(guessedLetters);
